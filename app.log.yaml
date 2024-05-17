@@ -1,0 +1,48 @@
+# -*- coding: utf-8 -*-
+version: 1
+
+formatters:
+  simple:
+    format: '%(asctime)s,%(name)s,%(levelname).3s,%(message)s'
+  file:
+    format: '%(asctime)s,%(name)s,%(levelname).3s,%(message)s'
+    # style: '{'
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: simple
+    stream: ext://sys.stdout
+  file:
+    class: logging.handlers.TimedRotatingFileHandler
+    level: DEBUG
+    formatter: simple
+    filename: /tmp/tcu/log/cube.log
+    when: MIDNIGHT
+    backupCount: 7
+    encoding: utf-8
+
+loggers:
+  root:
+    level: INFO
+    handlers: [console, file]
+    propagate: no
+
+  __main__:
+    level: DEBUG
+
+  cube.medcube:
+    level: DEBUG
+
+  cube.door_control:
+    level: DEBUG
+
+  # relay.client :
+  #   level: DEBUG
+
+  # onlinemed:
+  #   level: DEBUG
+
+  # tcu :
+  #   level: DEBUG

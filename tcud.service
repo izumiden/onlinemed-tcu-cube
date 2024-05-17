@@ -1,0 +1,13 @@
+[Unit]
+Description=TCU service
+After=pigpiod.service
+
+[Service]
+User=pi
+ExecStart=/home/pi/.pyenv/versions/tcu/bin/python3 /home/pi/Tcu/cube/src/tcud.py
+WorkingDirectory=/home/pi/Tcu/cube
+Restart=always
+RestartSec=60
+
+[Install]
+WantedBy=graphical.target
